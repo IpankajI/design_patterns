@@ -10,17 +10,17 @@ enum EVehicleType{
 class CVehical{
 public:
     virtual bool Book()=0;
+    virtual ~CVehical()=0;
     static CVehical* createVehical(EVehicleType vehicleType);
 };
+
+CVehical::~CVehical(){}
 
 class CBus:public CVehical{
 public:
     bool Book(){
         cout<<"Bus is booked!"<<endl;
         return true;
-    }
-    ~CBus(){
-        cout<<"CBus deleted"<<endl;
     }
 };
 
@@ -30,9 +30,6 @@ public:
         cout<<"Train is booked!"<<endl;
         return true;
     }
-    ~CTrain(){
-        cout<<"Train deleted"<<endl;
-    }
 };
 
 class CFlight:public CVehical{
@@ -40,9 +37,6 @@ public:
     bool Book(){
         cout<<"Flight is booked!"<<endl;
         return true;
-    }
-    ~CFlight(){
-        cout<<"Flight deleted"<<endl;
     }
 };
 
