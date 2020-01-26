@@ -115,26 +115,33 @@ private:
     CLoan* educationLoan;
 public:
     CClient(CBank* bank):bank(bank){
-        homeLoan=bank->getHomeLoan();
-        bussinessLoan=bank->getBussinessLoan();
-        educationLoan=bank->getEducationLoan();
+        if(bank==NULL){
+            cout<<"Client can't initialize without bank"<<endl;
+            throw 0;
+        }
+        bussinessLoan=NULL;
+        homeLoan=NULL;
+        educationLoan=NULL;       
     }
     void calculateEMIHomeLoan(){
-        if(bank){
-            homeLoan->calculateEMI();
+        if(!homeLoan){
+            homeLoan=bank->getHomeLoan();
         }
+        homeLoan->calculateEMI();
     }
 
     void calculateEMIBussinessLoan(){
-        if(bank){
-            bussinessLoan->calculateEMI();
+        if(!bussinessLoan){
+            bussinessLoan=bank->getBussinessLoan();
         }
+        bussinessLoan->calculateEMI();
     }
 
     void calculateEMIEducationLoan(){
-        if(bank){
-            educationLoan->calculateEMI();
+        if(!educationLoan){
+            educationLoan=bank->getEducationLoan();
         }
+        educationLoan->calculateEMI();
     }
 
     ~CClient(){
