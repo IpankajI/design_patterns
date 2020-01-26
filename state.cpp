@@ -2,7 +2,17 @@
 
 using namespace std;
 
-class CMachine;
+class CState;
+class CMachine{
+private:
+    CState* state;
+
+public:
+    void turnOn();
+    void turnOff();
+    CMachine();
+    ~CMachine();
+};
 
 class CState{
 public:
@@ -26,7 +36,7 @@ public:
         cout<<"Already on"<<endl;
     }
     void Off(CMachine* machine){
-        cout<<"Going Off from On"<<endl;
+        cout<<"Going Off from On: "<<endl;
     }
     bool isOn(){
         return true;
@@ -54,40 +64,33 @@ public:
     }
 };
 
-class CMachine{
-private:
-    CState* state;
+void CMachine::turnOn(){
+    if(state->isOn()){
+        return;
+    }
+    state->On(this);
+    delete state;
+    state=new COn();
+}
 
-public:
+void CMachine::turnOff(){
+    if(state->isOff()){
+        return;
+    }
+    state->Off(this);
+    delete state;
+    state=new COff();
+}
 
-    void turnOn(){
-        if(state->isOn()){
-            return;
-        }
-        state->On(this);
+CMachine::CMachine(){
+    state=new COff();
+}
+
+CMachine::~CMachine(){
+    if(state){
         delete state;
-        state=new COn();
     }
-    
-    void turnOff(){
-        if(state->isOff()){
-            return;
-        }
-        state->Off(this);
-        delete state;
-        state=new COff();
-    }
-    
-    CMachine(){
-        state=new COff();
-    }
-
-    ~CMachine(){
-        if(state){
-            delete state;
-        }
-    }
-};
+}
 
 int main(){
     CMachine* machine=new CMachine();
