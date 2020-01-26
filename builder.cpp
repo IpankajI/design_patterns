@@ -15,7 +15,6 @@ public:
         string url;
         string method;
         unordered_map<string, string> params;
-        CHttpRequestBuilder* httpRequestBuilder;
     public:
         CHttpRequestBuilder* setUrl(string url){
             this->url=url;
