@@ -46,7 +46,7 @@ public:
         return httpRequestBuilder;
     }
 
-    void Do(){  
+    bool Do(){  
         
         cout<<"url: "<<url<<endl;
         cout<<"method: "<<method<<endl;
@@ -55,6 +55,7 @@ public:
             cout<<it->first<<": "<<it->second<<endl;
         }
         cout<<"Sending HttpRequest..."<<endl;
+        return true;
     }
 
     CHttpRequest(){
