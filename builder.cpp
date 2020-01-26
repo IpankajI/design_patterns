@@ -64,6 +64,7 @@ public:
     ~CHttpRequest(){
         if(httpRequestBuilder){
             delete httpRequestBuilder;
+            httpRequestBuilder=NULL;
         }
     }
 private:
