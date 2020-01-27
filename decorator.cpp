@@ -35,7 +35,7 @@ public:
 class CShapeDecoratorRed:public CShapeDecorator{
 public:
     CShapeDecoratorRed(CShape* shape):CShapeDecorator(shape){
-        cout<<"coloring with red..."<<endl;
+        cout<<"coloring shape with red..."<<endl;
     }
     void draw(){
         shape->draw();
